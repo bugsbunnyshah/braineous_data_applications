@@ -1,0 +1,25 @@
+{
+  "pipeId": "replicationone",
+  "entity": "person",
+  "configuration": [
+    {
+      "stagingStore" : "com.appgallabs.dataplatform.targetSystem.core.driver.MongoDBStagingStore",
+      "name": "person",
+      "config": {
+        "connectionString": "mongodb://localhost:27017",
+        "username": "",
+        "password":  "",
+        "database": "person",
+        "collection": "data",
+        "jsonpathExpressions": []
+      }
+    }
+  ],
+  "cdc_config":{
+    "connectionString": "jdbc:mysql://localhost:3306/braineous_staging_database",
+    "username": "root",
+    "password": "",
+    "table": "cdc_test",
+    "data_key": ["name", "email"]
+  }
+}

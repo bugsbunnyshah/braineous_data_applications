@@ -1,16 +1,24 @@
-{
-  "pipeId": "yyya",
-  "entity": "abc",
-  "configuration": [
-    {
-      "stagingStore" : "com.appgallabs.dataplatform.targetSystem.core.driver.MongoDBStagingStore",
-      "name": "yyya",
-      "config": {
-        "connectionString": "mongodb://localhost:27017",
-        "database": "yyya",
-        "collection": "data",
-        "jsonpathExpressions": []
-      }
+[
+  {
+    "pipeId": "replicationone",
+    "entity": "person",
+    "cdc_config":{
+      "connectionString": "jdbc:mysql://localhost:3306/braineous_staging_database",
+      "username": "root",
+      "password": "",
+      "table": "cdc_test",
+      "data_key": ["name", "email"]
     }
-  ]
-}
+  },
+  {
+    "pipeId": "replicationtwo",
+    "entity": "person",
+    "cdc_config":{
+      "connectionString": "jdbc:mysql://localhost:3306/braineous_live_database",
+      "username": "root",
+      "password": "",
+      "table": "person",
+      "data_key": ["name", "email"]
+    }
+  }
+]
