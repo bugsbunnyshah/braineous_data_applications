@@ -10,6 +10,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataReplicationClient {
 
     public static void main(String[] args) throws Exception{
@@ -30,7 +33,7 @@ public class DataReplicationClient {
                 ingestionHostUrl("http://localhost:8080/").
                 apiKey(apiKey).
                 apiSecret(apiSecret).
-                streamSizeInObjects(0);
+                streamSizeInObjects(10);
         dataPlatformService.configure(configuration);
 
         JsonArray replicationPipeline = dataReplicationClient.
@@ -85,13 +88,20 @@ public class DataReplicationClient {
                           JsonArray pipesJsonArray,
                           JsonElement datasetElement
     ){
-        //TODO: make it concurrent and in batches
+        //make it parallel and in batches
+        List<JsonObject> pipeConfigs = new ArrayList<>();
         for(int i=0; i<pipesJsonArray.size();i++) {
             JsonObject configJson = pipesJsonArray.get(i).getAsJsonObject();
+            pipeConfigs.add(configJson);
+        }
+
+        //process pipes in parallel
+        pipeConfigs.parallelStream().forEach(configJson -> {
             String pipeId = configJson.get("pipeId").getAsString();
             String entity = configJson.get("entity").getAsString();
             dataPlatformService.sendData(pipeId, entity, datasetElement.toString());
-        }
+        });
+
         System.out.println("*****DATA_INGESTION_SUCCESS******");
     }
 }
