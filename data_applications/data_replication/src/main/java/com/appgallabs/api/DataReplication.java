@@ -1,4 +1,4 @@
-package com.appgallabs;
+package com.appgallabs.api;
 
 import com.google.gson.JsonObject;
 
