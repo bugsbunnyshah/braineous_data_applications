@@ -35,10 +35,6 @@ public class DataReplicationTest {
         JsonElement datasetElement = PayloadUtil.dataset();
         payload.add("dataset", datasetElement);
 
-        //TODO: REMOVE: inspect_payload
-        logger.info("***PAYLOAD***");
-        JsonUtil.printStdOut(payload);
-
         given()
                 .when().body(payload.toString()).post("/ingest")
                 .then()
