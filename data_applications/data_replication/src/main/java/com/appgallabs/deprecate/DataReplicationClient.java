@@ -1,4 +1,4 @@
-package com.appgallabs;
+package com.appgallabs.deprecate;
 
 import com.appgallabs.dataplatform.client.sdk.api.Configuration;
 import com.appgallabs.dataplatform.client.sdk.api.DataPlatformService;
