@@ -1,13 +1,18 @@
 package com.appgallabs.api;
 
+import com.appgallabs.service.DataReplicationService;
 import com.google.gson.JsonObject;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("ingest")
 public class DataReplication {
+
+    @Inject
+    private DataReplicationService dataReplicationService;
 
     public DataReplication() {
     }
