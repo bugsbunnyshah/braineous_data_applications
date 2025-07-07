@@ -28,7 +28,7 @@ public class DataReplicationService {
 
     public void ingest(
             int streamSizeInObjects,
-            JsonElement datasetElement,
+            JsonArray datasetElement,
             JsonArray replicationPipeline
     ){
         DataPlatformService dataPlatformService = DataPlatformService.getInstance();

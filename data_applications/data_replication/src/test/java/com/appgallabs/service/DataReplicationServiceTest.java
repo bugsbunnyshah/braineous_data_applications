@@ -23,7 +23,7 @@ public class DataReplicationServiceTest {
     @Test
     public void ingest() throws Exception{
         //dataset
-        JsonElement datasetElement = PayloadUtil.dataset();
+        JsonArray datasetElement = PayloadUtil.dataset().getAsJsonArray();
 
         //replication_pipeline
         JsonArray replicationPipeline = PayloadUtil.discoverReplicationPipeLine();

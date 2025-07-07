@@ -1,7 +1,5 @@
 package com.appgallabs.api;
 
-import com.appgallabs.dataplatform.util.JsonUtil;
-import com.appgallabs.dataplatform.util.Util;
 import com.appgallabs.reuse.PayloadUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -39,6 +37,19 @@ public class DataReplicationTest {
                 .when().body(payload.toString()).post("/ingest")
                 .then()
                 .statusCode(200)
+                .body(is(message.toString()));
+
+    }
+
+    @Test
+    public void ingestInvalidFormat() throws Exception {
+        JsonObject message = new JsonObject();
+        message.addProperty("message", "INVALID_INPUT_FORMAT");
+
+        given()
+                .when().body("{}").post("/ingest")
+                .then()
+                .statusCode(422)
                 .body(is(message.toString()));
 
     }

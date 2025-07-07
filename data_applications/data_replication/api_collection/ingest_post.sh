@@ -1,3 +1,3 @@
 curl -v --location --request POST 'http://localhost:9080/ingest' \
 --header 'Content-Type: application/json' \
---data-raw '{}'
+--data-raw '{"stream_size_in_objects":2,"replication_pipeline":[{"pipeId":"replicationone","entity":"person","cdc_config":{"connectionString":"jdbc:mysql://localhost:3306/braineous_staging_database","username":"root","password":"","table":"cdc_test","data_key":["name","email"]}},{"pipeId":"replicationtwo","entity":"person","cdc_config":{"connectionString":"jdbc:mysql://localhost:3306/braineous_live_database","username":"root","password":"","table":"person","data_key":["name","email"]}}],"dataset":[{"id":1,"name":"name_1","age":46,"addr":{"email":"name_1@email.com","phone":"1234"}},{"id":"2","name":"name_2","age":55,"addr":{"email":"name_2@email.com","phone":"12345"}}]}'
